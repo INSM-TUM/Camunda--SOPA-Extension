@@ -1,0 +1,106 @@
+<div>
+  <h3 id="title">Select LCA Parameters</h3>
+  <div class="selection" ng-show="currentAbstractCostDriver && currentConcreteCostDriver">
+    <button
+      type="button"
+      ng-click="addCostDriver(currentConcreteCostDriver, targetAmount, costDrivers)"
+    >
+        Add Cost Driver
+    </button>
+  </div>
+  <div class="selection">
+    <label for="abstractCostDriverInput">Abstract Cost Driver:</label>
+  <select
+    id="abstractCostDriverInput"
+    ng-model="currentAbstractCostDriver"
+    ng-options="abstractCostDriver for abstractCostDriver in getAbstractCostDrivers()"
+  >
+    <option value="">None</option>
+  </select>
+  </div>
+  <div class="selection" ng-show="currentAbstractCostDriver">
+    <label for="concreteCostDriverInput">Concrete Cost Driver:</label>
+    <select
+      id="concreteCostDriverInput"
+      ng-model="currentConcreteCostDriver"
+      ng-options="concreteCostDriver for concreteCostDriver in getConcreteCostDrivers(currentAbstractCostDriver)"
+    >
+      <option value="">None</option>
+    </select>
+  </div>
+  <div class="selection" ng-show="currentAbstractCostDriver && currentConcreteCostDriver">
+    <input id="targetAmount" type="number" ng-model="targetAmount" />
+    <label for="targetAmount"
+      >{{ getCurrentUnit(currentConcreteCostDriver, costDrivers) }}</label
+    >
+  </div>
+</div>
+<div class="submit-btn-container">
+    <button type="button" ng-click="submit(selectedCostDrivers)">
+        Submit LCA Parameters
+    </button>
+</div>
+<table ng-show="selectedCostDrivers.length > 0">
+    <colgroup>
+        <col>
+        <col>
+        <col>
+        <col>
+        <col>
+        <col>
+    </colgroup>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Target Amount with Unit</th>
+            <th>Abstract Cost Driver</th>
+            <th>Concrete Cost Driver</th>
+            <th>Saved</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr
+    ng-repeat="selectedCostDriver in selectedCostDrivers track by $index"
+  >
+            <td>{{ selectedCostDriver.title }}</th>
+            <td>{{ selectedCostDriver.targetAmount }} <i>{{ selectedCostDriver.unit }}</i></th>
+            <td>{{ selectedCostDriver.abstractCostDriver }}</th>
+            <td>{{ selectedCostDriver.concreteCostDriver }}</th>
+            <td>{{ selectedCostDriver.saved ? 'Yes' : 'No' }}</th>
+            <td>
+                <button type="button" ng-click="removeCostDriver($index)">
+                    X
+                </button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<style>
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+    th {
+        border-bottom: 2px solid black;
+        padding: 5px;
+    }
+    td {
+        border-bottom: 1px solid black;
+        padding: 5px;
+    }
+    th:nth-child(even),
+    td:nth-child(even) {
+        background-color: lightgray;
+    }
+    .submit-btn-container {
+        padding: 5px;
+        margin-top: 15px;
+    }
+    #title {
+        margin-bottom: 15px;
+    }
+    .selection {
+        padding: 5px;
+    }
+</style>

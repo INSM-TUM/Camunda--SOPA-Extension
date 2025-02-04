@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Created-By: Maven WAR Plugin 3.3.2
+Build-Jdk-Spec: 17
+Implementation-Title: Camunda Platform - Example - Invoice Jakarta
+Implementation-Version: 7.23.0-alpha1
+Implementation-Vendor: camunda services GmbH
+

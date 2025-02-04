@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Archiver-Version: Plexus Archiver
+Created-By: Apache Maven 3.9.7
+Built-By: jenkins
+Build-Jdk: 17
+Implementation-Title: Camunda Platform - engine - REST - Assembly Jakart
+ a
+Implementation-Version: 7.23.0-alpha1
+Implementation-Vendor-Id: org.camunda.bpm
+Implementation-Vendor: camunda services GmbH
+
