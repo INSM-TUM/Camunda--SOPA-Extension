@@ -153,7 +153,6 @@ module.exports = [
             )
             .then(function(response) {
               const variables = response.data;
-              console.log(variables);
               const fetchedParams = Object.keys(variables)
                 .filter(key => key.startsWith('lca_'))
                 .map(key => {

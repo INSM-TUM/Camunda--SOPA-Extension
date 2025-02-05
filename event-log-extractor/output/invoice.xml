@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<Sustainability_Info>
-    <Average_Process_Instance_Cost>52654849.933081634</Average_Process_Instance_Cost>
-    <Activity_Cost>
-        <Activity id="prepareBankTransfer">
-            <Activity_Average_Cost id="prepareBankTransfer">52654849.933081634</Activity_Average_Cost>
-        </Activity>
-    </Activity_Cost>
-</Sustainability_Info>
