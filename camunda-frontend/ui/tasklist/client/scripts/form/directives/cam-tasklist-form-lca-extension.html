@@ -1,22 +1,21 @@
 <div>
   <h3 id="title">Select LCA Parameters</h3>
-  <div class="selection" ng-show="currentAbstractCostDriver && currentConcreteCostDriver">
-    <button
-      type="button"
-      ng-click="addCostDriver(currentConcreteCostDriver, targetAmount, costDrivers)"
-    >
-        Add Cost Driver
-    </button>
-  </div>
   <div class="selection">
     <label for="abstractCostDriverInput">Abstract Cost Driver:</label>
-  <select
-    id="abstractCostDriverInput"
-    ng-model="currentAbstractCostDriver"
-    ng-options="abstractCostDriver for abstractCostDriver in getAbstractCostDrivers()"
-  >
-    <option value="">None</option>
-  </select>
+    <select
+      id="abstractCostDriverInput"
+      ng-model="currentAbstractCostDriver"
+      ng-options="abstractCostDriver for abstractCostDriver in getAbstractCostDrivers()"
+    >
+      <option value="">None</option>
+    </select>
+    <button
+        class="add-btn"
+        type="button"
+        ng-click="addCostDriver(currentConcreteCostDriver, targetAmount, costDrivers)"
+        ng-show="currentAbstractCostDriver && currentConcreteCostDriver">
+          Add Cost Driver
+    </button>
   </div>
   <div class="selection" ng-show="currentAbstractCostDriver">
     <label for="concreteCostDriverInput">Concrete Cost Driver:</label>
@@ -102,5 +101,9 @@
     }
     .selection {
         padding: 5px;
+    }
+
+    .add-btn {
+        margin-left: 10px;
     }
 </style>

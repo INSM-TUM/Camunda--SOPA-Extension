@@ -117,7 +117,9 @@ module.exports = [
                   'engine://engine/:engine/task/' +
                     formController.getParams().taskId +
                     '/variables/lca_' +
-                    costDriver.concreteCostDriver
+                    costDriver.concreteCostDriver +
+                    '_' +
+                    formController.getParams().taskId
                 ),
                 data,
                 config
@@ -161,11 +163,19 @@ module.exports = [
                     ...costDriver,
                     saved: true
                   };
+                })
+                .filter(costDriver => {
+                  return (
+                    costDriver.taskId === formController.getParams().taskId
+                  );
                 });
               $scope.selectedCostDrivers = fetchedParams ?? [];
               $scope.oldParamNames =
-                Object.keys(variables).filter(key => key.startsWith('lca_')) ??
-                [];
+                Object.keys(variables).filter(
+                  key =>
+                    key.startsWith('lca_') &&
+                    key.endsWith(formController.getParams().taskId)
+                ) ?? [];
             });
         };
 

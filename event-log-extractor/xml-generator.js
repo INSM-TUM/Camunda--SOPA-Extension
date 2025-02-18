@@ -1,5 +1,7 @@
 import { existsSync, mkdirSync } from "fs";
 import { writeFile } from "fs/promises";
+import { fileURLToPath } from "url";
+import path from "path";
 
 export async function generateOutputFiles(data) {
     try {
@@ -19,7 +21,9 @@ export async function generateOutputFiles(data) {
                 continue;
             }
             const output = `${generateHeader()}${content}`;
-            await writeFile(`./output/${key}.xml`, output);
+            const dirname = path.dirname(fileURLToPath(import.meta.url));
+            const outputDir = path.join(dirname, "output");
+            await writeFile(path.join(outputDir, `${key}.xml`), output);
         }
         console.log("Output files written successfully");
     } catch (error) {
