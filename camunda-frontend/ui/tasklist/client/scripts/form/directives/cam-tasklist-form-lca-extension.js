@@ -44,6 +44,8 @@ module.exports = [
         $scope.targetAmount = 0;
         $scope.selectedCostDrivers = [];
         $scope.oldParamNames = [];
+        $scope.loadedOnce = false;
+        $scope.loading = false;
 
         $scope.addCostDriver = function(
           concreteCostDriver,
@@ -131,26 +133,36 @@ module.exports = [
         };
 
         // load cost drivers ////////////////////////////////////////////////////
+        $scope.loadCostDrivers = async function() {
+          $scope.loading = true;
+          $scope.loadedOnce = true;
+          olcaController
+            .getAll('http://localhost:8081/', 'ProductSystem')
+            .then(function(costDrivers) {
+              $scope.abstractCostDrivers = costDrivers
+                .map(costDriver => costDriver.abstractCostDriver)
+                .filter((value, index, self) => self.indexOf(value) === index);
+              $scope.costDrivers = costDrivers;
+              $scope.$apply();
+              loadParameters();
+            });
+        };
 
-        olcaController
-          .getAll('http://localhost:8081/', 'ProductSystem')
-          .then(function(costDrivers) {
-            $scope.abstractCostDrivers = costDrivers
-              .map(costDriver => costDriver.abstractCostDriver)
-              .filter((value, index, self) => self.indexOf(value) === index);
-            $scope.costDrivers = costDrivers;
-            $scope.$apply();
-            loadParameters();
-          });
+        $scope.unsaved = function(selectedCostDrivers) {
+          return selectedCostDrivers.some(costDriver => !costDriver.saved);
+        };
 
         // load existing parameters /////////////////////////////////////////////
         const loadParameters = () => {
+          const taskId = formController.getParams().taskId;
+          if (!taskId) {
+            $scope.loading = false;
+            return;
+          }
           return $http
             .get(
               Uri.appUri(
-                'engine://engine/:engine/task/' +
-                  formController.getParams().taskId +
-                  '/variables'
+                'engine://engine/:engine/task/' + taskId + '/variables'
               )
             )
             .then(function(response) {
@@ -165,17 +177,14 @@ module.exports = [
                   };
                 })
                 .filter(costDriver => {
-                  return (
-                    costDriver.taskId === formController.getParams().taskId
-                  );
+                  return costDriver.taskId === taskId;
                 });
               $scope.selectedCostDrivers = fetchedParams ?? [];
               $scope.oldParamNames =
                 Object.keys(variables).filter(
-                  key =>
-                    key.startsWith('lca_') &&
-                    key.endsWith(formController.getParams().taskId)
+                  key => key.startsWith('lca_') && key.endsWith(taskId)
                 ) ?? [];
+              $scope.loading = false;
             });
         };
 
