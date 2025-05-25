@@ -3,7 +3,7 @@ import { writeFile } from "fs/promises";
 import { fileURLToPath } from "url";
 import path from "path";
 
-export async function generateOutputFiles(data) {
+export async function generateOutputFiles(data, doAvgCostCalc) {
     try {
         const groupedData = data.reduce((acc, result) => {
             if (!acc[result.process.processDefinitionKey]) {
@@ -16,11 +16,10 @@ export async function generateOutputFiles(data) {
             mkdirSync("output");
         }
         for (const key in groupedData) {
-            const content = generateContent(groupedData[key]);
-            if (!content) {
-                continue;
-            }
-            const output = `${generateHeader()}${content}`;
+            const output = doAvgCostCalc
+                ? generateAvgCostCalcOutput(groupedData[key])
+                : generateEventLogOutput(key, groupedData[key]);
+            if (!output) continue;
             const dirname = path.dirname(fileURLToPath(import.meta.url));
             const outputDir = path.join(dirname, "output");
             await writeFile(path.join(outputDir, `${key}.xml`), output);
@@ -29,6 +28,14 @@ export async function generateOutputFiles(data) {
     } catch (error) {
         console.error("Error writing output file:", error);
     }
+}
+
+function generateAvgCostCalcOutput(data) {
+    const content = generateContent(data);
+    if (!content) {
+        return;
+    }
+    return `${generateHeader()}${content}`;
 }
 
 function generateHeader() {
@@ -110,4 +117,63 @@ function calculateActivityAverageCost(data, key) {
         return acc + (task ? task.costs : 0);
     }, 0);
     return totalCost / taskCount;
+}
+
+// Creating Event Log
+
+function generateEventLogOutput(key, data) {
+    const traceString = generateTraces(data);
+    return `<?xml version="1.0" encoding="UTF-8" ?>
+<log xes.version="1.0" xes.features="nested-attributes" openxes.version="1.0RC7">
+    <string key="concept:name" value="${key}"/>
+    ${traceString}
+</log>`;
+}
+
+function generateTraces(data) {
+    return data.map((d) => generateTrace(d)).join("\n");
+}
+
+function generateTrace(data) {
+    const totalCost = data.results.reduce((cost, result) => {
+        return (cost += result.costs);
+    }, 0);
+    return `<trace>
+        <string key="concept:name" value="${data.process.id}"/>
+        <string key="cost:Process_Instance" value="${totalCost}"/>
+${generateEventLogActivities(data)}
+    </trace>`;
+}
+
+function generateEventLogActivities(data) {
+    return data.results
+        ?.map((activity) => generateEventLogActivity(activity))
+        .join("\n");
+}
+
+function generateEventLogActivity(activity) {
+    return `${generateEvent(activity, true)}
+${generateEvent(activity, false)}`;
+}
+
+function generateEvent(activity, isStartEvent) {
+    return `        <event>
+            <string key="concept:name" value="${activity.task?.name}"/>
+${generateCostDrivers(activity)}
+            <string key="lifecycle:transition" value="${
+                isStartEvent ? "start" : "complete"
+            }"/>
+	        <date key="time:timestamp" value="${
+                isStartEvent ? activity.task?.startTime : activity.task?.endTime
+            }"/>
+            <string key="cost:activity" value="${activity.costs}"/>
+        </event>`;
+}
+
+function generateCostDrivers(activity) {
+    return activity.parameters.map((p) => generateCostDriver(p)).join("\n");
+}
+
+function generateCostDriver(parameter) {
+    return `            <string key="cost:driver" value="${parameter.abstractCostDriver}(${parameter.concreteCostDriver}): ${parameter.costs}"/>`;
 }

@@ -10,5 +10,6 @@ Possible CL arguments:
 -   `olcaUrl`: allows you to provide your own url of a running openLCA instance
 -   `process`: allows you to perform an environmental cost analysis on just one process type (you need to provide the processDefinitionKey of the Camunda process)
 -   `method`: allows you to provide a name for the impact method you want to use for the calculation
+-   `doAvgCostCalc`: allows you to decide whether you want to perform an avg cost calculation or you prefer just to output the event log with the associated costs
 
 To run the project, you can use `npm run start`. In case you want to pass CL arguments, you can use for example `npm run start -- --camundaUrl=http://localhost:9000 --process=invoice`.

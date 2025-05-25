@@ -8,6 +8,7 @@ const processDefinitionKey = args["process"];
 const impactMethodName = args["method"];
 const camundaUrl = args["camundaUrl"];
 const olcaUrl = args["olcaUrl"];
+const doAvgCostCalc = args["doAvgCostCalc"] ?? false;
 
 const camundaData = await getCamundaData(camundaUrl, processDefinitionKey);
 
@@ -18,14 +19,18 @@ const data = await Promise.all(
         }
         const result = await Promise.all(
             Object.keys(data.tasksWithParameters).map(async (key) => {
-                const costs = await calculateCostDrivers(
+                const parameters = await calculateCostDrivers(
                     olcaUrl,
                     impactMethodName,
                     data.tasksWithParameters[key].parameters
                 );
                 return {
                     ...data.tasksWithParameters[key],
-                    costs: costs.reduce((a, b) => a + b, 0),
+                    parameters,
+                    costs: parameters.reduce(
+                        (res, param) => res + param.costs,
+                        0
+                    ),
                 };
             })
         );
@@ -33,4 +38,4 @@ const data = await Promise.all(
     })
 );
 
-generateOutputFiles(data);
+generateOutputFiles(data, doAvgCostCalc);

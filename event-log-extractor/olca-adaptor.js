@@ -21,7 +21,10 @@ export async function calculateCostDrivers(
         }
         const results = await Promise.all(
             parameters.map(async (parameter) => {
-                return await calculateCostDriver(parameter, client, method);
+                return {
+                    ...parameter,
+                    costs: await calculateCostDriver(parameter, client, method),
+                };
             })
         );
         return results;
