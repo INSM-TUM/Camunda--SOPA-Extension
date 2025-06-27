@@ -166,7 +166,7 @@ function generateEvent(activity, isStartEvent) {
     } else {
         return `            <event>
                 <string key="concept:name" value="${activity.task?.name}"/>
-    ${!isStartEvent ? generateCostDrivers(activity) : ""}
+                ${generateCostDrivers(activity)}
                 <string key="lifecycle:transition" value="complete"/>
                 <date key="time:timestamp" value="${activity.task?.endTime}"/>
                 ${generateActivityCostForEvent(activity)}
@@ -179,9 +179,9 @@ function generateActivityCostForEvent(activity) {
 }
 
 function generateCostDrivers(activity) {
-    return activity.parameters.map((p) => generateCostDriver(p)).join("\n");
+    return activity.parameters.map((p) => generateCostDriver(p)).join("\n                ");
 }
 
 function generateCostDriver(parameter) {
-    return `            <string key="cost:driver" value="${parameter.abstractCostDriver}(${parameter.concreteCostDriver}): ${parameter.costs}"/>`;
+    return `<string key="cost:driver" value="${parameter.abstractCostDriver}(${parameter.concreteCostDriver}): ${parameter.costs}"/>`;
 }
