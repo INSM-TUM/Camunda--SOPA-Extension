@@ -131,7 +131,7 @@ function generateEventLogOutput(key, data) {
 }
 
 function generateTraces(data) {
-    return data.map((d) => generateTrace(d)).join("\n");
+    return data.map((d) => generateTrace(d)).join("\n    ");
 }
 
 function generateTrace(data) {
