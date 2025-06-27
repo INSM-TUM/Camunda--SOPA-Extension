@@ -157,17 +157,25 @@ ${generateEvent(activity, false)}`;
 }
 
 function generateEvent(activity, isStartEvent) {
-    return `        <event>
-            <string key="concept:name" value="${activity.task?.name}"/>
-${generateCostDrivers(activity)}
-            <string key="lifecycle:transition" value="${
-                isStartEvent ? "start" : "complete"
-            }"/>
-	        <date key="time:timestamp" value="${
-                isStartEvent ? activity.task?.startTime : activity.task?.endTime
-            }"/>
-            <string key="cost:activity" value="${activity.costs}"/>
-        </event>`;
+    if (isStartEvent) {
+        return `            <event>
+                <string key="concept:name" value="${activity.task?.name}"/>
+                <string key="lifecycle:transition" value="start"/>
+                <date key="time:timestamp" value="${activity.task?.startTime}"/>
+            </event>`; 
+    } else {
+        return `            <event>
+                <string key="concept:name" value="${activity.task?.name}"/>
+    ${!isStartEvent ? generateCostDrivers(activity) : ""}
+                <string key="lifecycle:transition" value="complete"/>
+                <date key="time:timestamp" value="${activity.task?.endTime}"/>
+                ${generateActivityCostForEvent(activity)}
+            </event>`;
+        }
+}
+
+function generateActivityCostForEvent(activity) {
+    return `<string key="cost:activity" value="${activity.costs}"/>`;
 }
 
 function generateCostDrivers(activity) {
