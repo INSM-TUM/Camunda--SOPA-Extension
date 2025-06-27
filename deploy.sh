@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 set -e
 
@@ -10,6 +10,7 @@ TARGET_DIR="$SERVER_DIR/server/apache-tomcat-10.1.30/webapps/camunda/app"
 cd "$FRONTEND_DIR"
 
 echo "Building frontend..."
+npm i --silent
 npm run build
 
 cd ..
