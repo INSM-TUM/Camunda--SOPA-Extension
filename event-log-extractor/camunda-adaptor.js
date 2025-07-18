@@ -1,7 +1,7 @@
 import axios from "axios";
 
 async function getHistory(camundaUrl, processDefinitionKey) {
-    const baseUrl = camundaUrl ?? "http://localhost:8080";
+    const baseUrl = camundaUrl ?? "http://localhost:8082";
     let url = baseUrl + "/engine-rest/history/process-instance?finished=true";
     if (processDefinitionKey) {
         url += "&processDefinitionKey=" + processDefinitionKey;
@@ -15,7 +15,7 @@ async function getHistory(camundaUrl, processDefinitionKey) {
 }
 
 async function getTasks(camundaUrl, processInstanceId) {
-    const baseUrl = camundaUrl ?? "http://localhost:8080";
+    const baseUrl = camundaUrl ?? "http://localhost:8082";
     const response = await axios.get(
         baseUrl +
             "/engine-rest/history/task?processInstanceId=" +
@@ -25,7 +25,7 @@ async function getTasks(camundaUrl, processInstanceId) {
 }
 
 async function getVariables(camundaUrl, processInstanceId) {
-    const baseUrl = camundaUrl ?? "http://localhost:8080";
+    const baseUrl = camundaUrl ?? "http://localhost:8082";
     const response = await axios.get(
         baseUrl +
             "/engine-rest/history/variable-instance?processInstanceId=" +
