@@ -35,6 +35,7 @@ var Controller = [
   '$rootScope',
   '$q',
   '$filter',
+  '$http',
   'search',
   'ProcessDefinitionResource',
   'ProcessInstanceResource',
@@ -55,6 +56,7 @@ var Controller = [
     $rootScope,
     $q,
     $filter,
+    $http,
     search,
     ProcessDefinitionResource,
     ProcessInstanceResource,
@@ -693,6 +695,22 @@ var Controller = [
         'sourceVersion',
         'targetVersion'
       ]);
+    };
+
+    $scope.performCalc = function() {
+      $http({
+        method: 'POST',
+        url: 'http://localhost:8083/performCalc',
+        params: {processDefinitionKey: processDefinition.key}
+      }).then(
+        function successCallback(response) {
+          console.log('Success:', response.data);
+        },
+        function errorCallback(response) {
+          console.error('Error:', response);
+          alert('Something went wrong.');
+        }
+      );
     };
   }
 ];
