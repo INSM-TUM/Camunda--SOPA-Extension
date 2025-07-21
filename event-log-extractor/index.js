@@ -45,7 +45,8 @@ export async function run(
         })
     );
 
-    generateOutputFiles(data, doAvgCostCalc);
+    await generateOutputFiles(data, doAvgCostCalc);
+    return data;
 }
 
 /*await run(

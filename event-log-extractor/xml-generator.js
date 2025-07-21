@@ -22,7 +22,7 @@ export async function generateOutputFiles(data, doAvgCostCalc) {
             if (!output) continue;
             const dirname = path.dirname(fileURLToPath(import.meta.url));
             const outputDir = path.join(dirname, "output");
-            await writeFile(path.join(outputDir, `${key}.xml`), output);
+            await writeFile(path.join(outputDir, `${key}.xes`), output);
         }
         console.log("Output files written successfully");
     } catch (error) {

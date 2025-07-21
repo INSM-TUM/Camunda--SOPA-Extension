@@ -704,7 +704,14 @@ var Controller = [
         params: {processDefinitionKey: processDefinition.key}
       }).then(
         function successCallback(response) {
-          console.log('Success:', response.data);
+          console.log('Success:', response);
+          const blob = new Blob([response.data], {type: 'text/xml'});
+          const url = URL.createObjectURL(blob);
+          const a = document.createElement('a');
+          a.href = url;
+          a.download = 'exported_log.xes';
+          a.click();
+          URL.revokeObjectURL(url);
         },
         function errorCallback(response) {
           console.error('Error:', response);
