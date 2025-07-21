@@ -19,7 +19,7 @@
 
 var template = require('./process-definition.html?raw');
 
-import {fileSaver} from 'file-saver';
+//import {fileSaver} from 'file-saver';
 
 var angular = require('camunda-commons-ui/vendor/angular');
 var routeUtil = require('../../../../common/scripts/util/routeUtil');
@@ -30,6 +30,11 @@ var ngModule = angular.module('cam.cockpit.pages.processDefinition', [
   'dataDepend',
   camCommons.name
 ]);
+
+var reader = new FileReader();
+reader.onload = function(_) {
+  window.open(decodeURIComponent(reader.result), '_self', '', false);
+};
 
 var Controller = [
   '$location',
@@ -707,13 +712,11 @@ var Controller = [
         headers: {accept: 'text/xml'}
       }).then(
         function successCallback(response) {
-          console.log('Success:', response);
-          const blob = response.data;
-          const fileName = 'log.xes';
-          fileSaver.saveAs(blob, fileName);
+          console.log('Success:', response); // eslint-disable-line
+          reader.readAsDataURL(new Blob([response.data], {type: 'text/xml'}));
         },
         function errorCallback(response) {
-          console.error('Error:', response);
+          console.error('Error:', response); // eslint-disable-line
           alert('Something went wrong.');
         }
       );
