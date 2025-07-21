@@ -19,6 +19,8 @@
 
 var template = require('./process-definition.html?raw');
 
+import {fileSaver} from 'file-saver';
+
 var angular = require('camunda-commons-ui/vendor/angular');
 var routeUtil = require('../../../../common/scripts/util/routeUtil');
 var searchWidgetUtils = require('../../../../common/scripts/util/search-widget-utils');
@@ -701,17 +703,14 @@ var Controller = [
       $http({
         method: 'POST',
         url: 'http://localhost:8083/performCalc',
-        params: {processDefinitionKey: processDefinition.key}
+        params: {processDefinitionKey: processDefinition.key},
+        headers: {accept: 'text/xml'}
       }).then(
         function successCallback(response) {
           console.log('Success:', response);
-          const log_blob = new Blob([response.data], {type: 'text/xml'});
-          const download_url = URL.createObjectURL(log_blob);
-          const download_anchor = document.createElement('a');
-          download_anchor.href = download_url;
-          download_anchor.download = 'exported_log.xes';
-          download_anchor.click();
-          URL.revokeObjectURL(download_url);
+          const blob = response.data;
+          const fileName = 'log.xes';
+          fileSaver.saveAs(blob, fileName);
         },
         function errorCallback(response) {
           console.error('Error:', response);
