@@ -705,13 +705,13 @@ var Controller = [
       }).then(
         function successCallback(response) {
           console.log('Success:', response);
-          const blob = new Blob([response.data], {type: 'text/xml'});
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement('a');
-          a.href = url;
-          a.download = 'exported_log.xes';
-          a.click();
-          URL.revokeObjectURL(url);
+          const log_blob = new Blob([response.data], {type: 'text/xml'});
+          const download_url = URL.createObjectURL(log_blob);
+          const download_anchor = document.createElement('a');
+          download_anchor.href = download_url;
+          download_anchor.download = 'exported_log.xes';
+          download_anchor.click();
+          URL.revokeObjectURL(download_url);
         },
         function errorCallback(response) {
           console.error('Error:', response);
