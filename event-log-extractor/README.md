@@ -13,3 +13,5 @@ Possible CL arguments:
 -   `doAvgCostCalc`: allows you to decide whether you want to perform an avg cost calculation or you prefer just to output the event log with the associated costs
 
 To run the project, you can use `npm run start`. In case you want to pass CL arguments, you can use for example `npm run start -- --camundaUrl=http://localhost:9000 --process=invoice`.
+
+The extractor tool can also be triggered remotely from within Camunda. For this, `npm run serve` starts a server listening on port 8083. All possible arguments can similarly be provided via the request parameters.

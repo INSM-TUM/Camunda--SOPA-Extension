@@ -24,3 +24,12 @@ The event logs extracted by the `event-log-extractor` can be compared with simul
 2. `./tomcat-server/start-camunda.sh`
 
 On Windows, you may instead call `start-camunda.bat`.
+
+## Instructions to start the event log extractor
+
+1. `cd .\event_log_extractor`
+2. `npm run serve`
+
+## Demo data and licences
+
+A brief note on the demo data made available in the `demo` folder: The data provided there is not the data we used during development and demonstration of this extension, due to licence restrictions that prevent us from making that data available. However, a licence can be obtained [here](https://nexus.openlca.org/database/Environmental%20Footprints) free of charge. After obtaining the licence and importing the dataset into openLCA, end users can develop corresponding product systems for concrete cost drivers accordingly.
