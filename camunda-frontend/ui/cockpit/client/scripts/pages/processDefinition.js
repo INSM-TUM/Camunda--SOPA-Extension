@@ -19,8 +19,6 @@
 
 var template = require('./process-definition.html?raw');
 
-//import {fileSaver} from 'file-saver';
-
 var angular = require('camunda-commons-ui/vendor/angular');
 var routeUtil = require('../../../../common/scripts/util/routeUtil');
 var searchWidgetUtils = require('../../../../common/scripts/util/search-widget-utils');
@@ -31,14 +29,10 @@ var ngModule = angular.module('cam.cockpit.pages.processDefinition', [
   camCommons.name
 ]);
 
-var reader = new FileReader();
-reader.onload = function(_) {
-  window.open(decodeURIComponent(reader.result), '_self', '', false);
-};
-
 var Controller = [
   '$location',
   '$scope',
+  '$window',
   '$rootScope',
   '$q',
   '$filter',
@@ -60,6 +54,7 @@ var Controller = [
   function(
     $location,
     $scope,
+    $window,
     $rootScope,
     $q,
     $filter,
@@ -709,11 +704,19 @@ var Controller = [
         method: 'POST',
         url: 'http://localhost:8083/performCalc',
         params: {processDefinitionKey: processDefinition.key},
-        headers: {accept: 'text/xml'}
+        headers: {accept: 'application/xml'}
       }).then(
         function successCallback(response) {
           console.log('Success:', response); // eslint-disable-line
-          reader.readAsDataURL(new Blob([response.data], {type: 'text/xml'}));
+          var blob = new Blob([response.data], {type: 'application/xml'});
+          //var url = $window.URL.createObjectURL(blob);
+          //$window.saveAs(url, '_blank');
+          var url = $window.URL.createObjectURL(blob);
+          var doc = $window.document.createElement('a');
+          doc.href = url;
+          doc.download = `${processDefinition.key}_log.xes`;
+          doc.click();
+          $window.URL.revokeObjectURL(url);
         },
         function errorCallback(response) {
           console.error('Error:', response); // eslint-disable-line

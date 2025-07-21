@@ -7809,6 +7809,84 @@ a.form-control-static {
 .modal-body > form > fieldset {
   max-width: 100%;
 }
+[notifications-panel] .message,
+.notifications-panel .message {
+  display: block;
+  white-space: break-spaces;
+}
+[notifications-panel] .close,
+.notifications-panel .close {
+  float: right;
+  font-size: 20px;
+  font-weight: bold;
+  color: #555555;
+  text-shadow: 0 1px 0 #fff;
+  opacity: 0.2;
+  padding: 0;
+  cursor: pointer;
+  background: transparent;
+  border: 0;
+  -webkit-appearance: none;
+  margin-left: 12px;
+  position: relative;
+  line-height: 20px;
+}
+[notifications-panel] .alert-error,
+.notifications-panel .alert-error {
+  color: #a94442;
+  background-color: #f2dede;
+  border-color: #ebccd1;
+}
+[notifications-panel] .alert-error hr,
+.notifications-panel .alert-error hr {
+  border-top-color: #e4b9c0;
+}
+[notifications-panel] .alert-error .alert-link,
+.notifications-panel .alert-error .alert-link {
+  color: #843534;
+}
+[notifications-panel] .alert-information,
+.notifications-panel .alert-information {
+  color: #31708f;
+  background-color: #d9edf7;
+  border-color: #bce8f1;
+}
+[notifications-panel] .alert-information hr,
+.notifications-panel .alert-information hr {
+  border-top-color: #a6e1ec;
+}
+[notifications-panel] .alert-information .alert-link,
+.notifications-panel .alert-information .alert-link {
+  color: #245269;
+}
+.page-notifications {
+  position: absolute;
+  z-index: 1060;
+  max-height: 70%;
+  overflow: auto;
+  bottom: 20px;
+  right: 30px;
+}
+.pagination {
+  text-align: center;
+  display: block;
+  clear: both;
+  overflow: visible;
+  margin: 15px auto;
+}
+.pagination > li {
+  overflow: visible;
+  display: inline-block;
+}
+.pagination > li a {
+  float: none;
+  border: none;
+}
+.pagination > li.active a {
+  background-color: #777777;
+  background-color: #eeeeee;
+  color: #555555;
+}
 .form-signin {
   width: 50vw;
   max-width: 450px;
@@ -13120,6 +13198,66 @@ input[name="defVersion"] {
 }
 [cam-share-link] [cam-widget-clipboard] .glyphicon {
   opacity: 1;
+}
+.animate-spin {
+  display: inline-block;
+  -webkit-animation: spin 1s infinite linear;
+  -o-animation: spin 1s infinite linear;
+  animation: spin 1s infinite linear;
+}
+@-moz-keyframes spin {
+  0% {
+    -moz-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -moz-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+@-o-keyframes spin {
+  0% {
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -o-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+@-ms-keyframes spin {
+  0% {
+    -ms-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -ms-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
+}
+@keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+    -moz-transform: rotate(0deg);
+    -o-transform: rotate(0deg);
+    transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(359deg);
+    -moz-transform: rotate(359deg);
+    -o-transform: rotate(359deg);
+    transform: rotate(359deg);
+  }
 }
 div > .loader-state.loading,
 form > .loader-state.loading,

@@ -6787,6 +6787,7 @@ button.close {
     display: none !important;
   }
 }
+/* stylelint-disable no-descending-specificity -- There are many non-trivial fixes in here */
 @font-face {
   font-family: 'bpmn';
   src: url(../../assets/bpmn.eot?bust=7.23.0-SNAPSHOT);
@@ -8049,8 +8050,29 @@ body {
   display: block;
   background-color: inherit;
 }
+[cam-widget-header] ul {
+  margin: 0;
+  padding: 0;
+}
+[cam-widget-header] ul.dropdown-menu {
+  border-top: none;
+  box-shadow: 0 2px 10px -4px #555555;
+}
+[cam-widget-header] ul.dropdown-menu::before {
+  content: '';
+  width: 100%;
+  height: 4px;
+  margin-top: -2px;
+  display: block;
+  background-color: inherit;
+}
 [cam-widget-header] a {
   color: #545454;
+  text-decoration: none;
+}
+[cam-widget-header] a:hover,
+[cam-widget-header] a:focus {
+  color: #222222;
   text-decoration: none;
 }
 [cam-widget-header] a:hover,
@@ -8067,6 +8089,9 @@ body {
   padding-left: 42px / 4;
   padding-right: 30px / 2;
   color: #000;
+}
+[cam-widget-header] .navbar-brand .brand-logo {
+  font-size: 21px;
 }
 [cam-widget-header] .navbar-brand .brand-logo {
   font-size: 21px;
@@ -8107,6 +8132,111 @@ body {
 [cam-widget-header] .navbar-toggle:hover > span:last-of-type {
   transform: translateY(2px);
 }
+[cam-widget-header] .navbar-toggle > span {
+  height: 2px;
+  display: block;
+  width: 100%;
+  min-width: 16px;
+  margin: 3px 0;
+  background-color: #545454;
+  transition: transform 0.218s ease, opacity 0.218s ease;
+}
+[cam-widget-header] .navbar-toggle > span:first-of-type {
+  margin-top: 0;
+}
+[cam-widget-header] .navbar-toggle > span:last-of-type {
+  margin-bottom: 0;
+}
+[cam-widget-header] .navbar-toggle:hover > span {
+  background-color: #222222;
+}
+[cam-widget-header] .navbar-toggle:hover > span:first-of-type {
+  transform: translateY(-2px);
+}
+[cam-widget-header] .navbar-toggle:hover > span:last-of-type {
+  transform: translateY(2px);
+}
+[cam-widget-header] .navbar-toggle.open > span {
+  opacity: 0;
+}
+[cam-widget-header] .navbar-toggle.open > span:first-of-type {
+  opacity: 1;
+  transform: translateY(5px) rotateZ(45deg);
+}
+[cam-widget-header] .navbar-toggle.open > span:last-of-type {
+  opacity: 1;
+  transform: translateY(-5px) rotateZ(-45deg);
+}
+[cam-widget-header] .navbar-toggle.open > span {
+  opacity: 0;
+}
+[cam-widget-header] .navbar-toggle.open > span:first-of-type {
+  opacity: 1;
+  transform: translateY(5px) rotateZ(45deg);
+}
+[cam-widget-header] .navbar-toggle.open > span:last-of-type {
+  opacity: 1;
+  transform: translateY(-5px) rotateZ(-45deg);
+}
+[cam-widget-header] .navbar-toggle > span {
+  height: 2px;
+  display: block;
+  width: 100%;
+  min-width: 16px;
+  margin: 3px 0;
+  background-color: #545454;
+  transition: transform 0.218s ease, opacity 0.218s ease;
+}
+[cam-widget-header] .navbar-toggle > span:first-of-type {
+  margin-top: 0;
+}
+[cam-widget-header] .navbar-toggle > span:last-of-type {
+  margin-bottom: 0;
+}
+[cam-widget-header] .navbar-toggle:hover > span {
+  background-color: #222222;
+}
+[cam-widget-header] .navbar-toggle:hover > span:first-of-type {
+  transform: translateY(-2px);
+}
+[cam-widget-header] .navbar-toggle:hover > span:last-of-type {
+  transform: translateY(2px);
+}
+[cam-widget-header] .navbar-toggle > span {
+  height: 2px;
+  display: block;
+  width: 100%;
+  min-width: 16px;
+  margin: 3px 0;
+  background-color: #545454;
+  transition: transform 0.218s ease, opacity 0.218s ease;
+}
+[cam-widget-header] .navbar-toggle > span:first-of-type {
+  margin-top: 0;
+}
+[cam-widget-header] .navbar-toggle > span:last-of-type {
+  margin-bottom: 0;
+}
+[cam-widget-header] .navbar-toggle:hover > span {
+  background-color: #222222;
+}
+[cam-widget-header] .navbar-toggle:hover > span:first-of-type {
+  transform: translateY(-2px);
+}
+[cam-widget-header] .navbar-toggle:hover > span:last-of-type {
+  transform: translateY(2px);
+}
+[cam-widget-header] .navbar-toggle.open > span {
+  opacity: 0;
+}
+[cam-widget-header] .navbar-toggle.open > span:first-of-type {
+  opacity: 1;
+  transform: translateY(5px) rotateZ(45deg);
+}
+[cam-widget-header] .navbar-toggle.open > span:last-of-type {
+  opacity: 1;
+  transform: translateY(-5px) rotateZ(-45deg);
+}
 [cam-widget-header] .navbar-toggle.open > span {
   opacity: 0;
 }
@@ -8134,6 +8264,102 @@ body {
   height: 42px;
   line-height: 45px;
   padding: 0 6px;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .sections-menu > ul > li > a {
+    height: auto;
+    line-height: 1.6;
+  }
+}
+[cam-widget-header] .sections-menu > ul > li > a:hover,
+[cam-widget-header] .sections-menu > ul > li > a:focus {
+  background-color: transparent;
+}
+[cam-widget-header] .sections-menu > ul > li > a:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .sections-menu > ul > li > a {
+    height: auto;
+    line-height: 1.6;
+  }
+}
+[cam-widget-header] .sections-menu > ul > li > a:hover,
+[cam-widget-header] .sections-menu > ul > li > a:focus {
+  background-color: transparent;
+}
+[cam-widget-header] .sections-menu > ul > li > a:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+[cam-widget-header] .sections-menu > ul > li:hover,
+[cam-widget-header] .sections-menu > ul > li:focus {
+  background-color: transparent;
+}
+[cam-widget-header] .sections-menu > ul > li:hover > a,
+[cam-widget-header] .sections-menu > ul > li:focus > a {
+  background-color: transparent;
+}
+[cam-widget-header] .sections-menu > ul > li.active {
+  background-color: #eeeeee;
+}
+[cam-widget-header] .sections-menu > ul > li.active > a {
+  color: #000;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .sections-menu > ul > li {
+    padding: 0 10.5px;
+  }
+}
+[cam-widget-header] .sections-menu > ul.collapse {
+  visibility: visible;
+  display: block;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .sections-menu > ul.collapse {
+    visibility: hidden;
+    display: none;
+  }
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .sections-menu > ul {
+    text-align: right;
+    margin-left: 0;
+    width: auto;
+    border: none;
+  }
+}
+[cam-widget-header] .sections-menu > ul > li {
+  display: inline-block;
+  list-style: none;
+  background-color: transparent;
+}
+[cam-widget-header] .sections-menu > ul > li:empty {
+  display: none;
+}
+[cam-widget-header] .sections-menu > ul > li > a {
+  display: block;
+  height: 42px;
+  line-height: 45px;
+  padding: 0 6px;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .sections-menu > ul > li > a {
+    height: auto;
+    line-height: 1.6;
+  }
+}
+[cam-widget-header] .sections-menu > ul > li > a:hover,
+[cam-widget-header] .sections-menu > ul > li > a:focus {
+  background-color: transparent;
+}
+[cam-widget-header] .sections-menu > ul > li > a:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
 }
 @media screen and (max-width: 842px) {
   [cam-widget-header] .sections-menu > ul > li > a {
@@ -8220,6 +8446,102 @@ body {
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .app-menu > ul > li > a {
+    height: auto;
+    line-height: 1.6;
+  }
+}
+[cam-widget-header] .app-menu > ul > li > a:hover,
+[cam-widget-header] .app-menu > ul > li > a:focus {
+  background-color: transparent;
+}
+[cam-widget-header] .app-menu > ul > li > a:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+[cam-widget-header] .app-menu > ul > li:hover,
+[cam-widget-header] .app-menu > ul > li:focus {
+  background-color: transparent;
+}
+[cam-widget-header] .app-menu > ul > li:hover > a,
+[cam-widget-header] .app-menu > ul > li:focus > a {
+  background-color: transparent;
+}
+[cam-widget-header] .app-menu > ul > li.active {
+  background-color: #eeeeee;
+}
+[cam-widget-header] .app-menu > ul > li.active > a {
+  color: #000;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .app-menu > ul > li {
+    padding: 0 10.5px;
+  }
+}
+[cam-widget-header] .app-menu > ul.collapse {
+  visibility: visible;
+  display: block;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .app-menu > ul.collapse {
+    visibility: hidden;
+    display: none;
+  }
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .app-menu > ul {
+    text-align: right;
+    margin-left: 0;
+    width: auto;
+    border: none;
+  }
+}
+[cam-widget-header] .app-menu > ul > li {
+  display: inline-block;
+  list-style: none;
+  background-color: transparent;
+}
+[cam-widget-header] .app-menu > ul > li:empty {
+  display: none;
+}
+[cam-widget-header] .app-menu > ul > li > a {
+  display: block;
+  height: 42px;
+  line-height: 45px;
+  padding: 0 6px;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .app-menu > ul > li > a {
+    height: auto;
+    line-height: 1.6;
+  }
+}
+[cam-widget-header] .app-menu > ul > li > a:hover,
+[cam-widget-header] .app-menu > ul > li > a:focus {
+  background-color: transparent;
+}
+[cam-widget-header] .app-menu > ul > li > a:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .app-menu > ul > li > a {
+    height: auto;
+    line-height: 1.6;
+  }
+}
+[cam-widget-header] .app-menu > ul > li > a:hover,
+[cam-widget-header] .app-menu > ul > li > a:focus {
+  background-color: transparent;
+}
+[cam-widget-header] .app-menu > ul > li > a:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
 [cam-widget-header] .app-menu > ul > li:hover,
 [cam-widget-header] .app-menu > ul > li:focus {
   background-color: transparent;
@@ -8262,6 +8584,1007 @@ body {
   height: 42px;
   line-height: 45px;
   padding: 0 6px;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .app-menu > ul > li > view > a {
+    height: auto;
+    line-height: 1.6;
+  }
+}
+[cam-widget-header] .app-menu > ul > li > view > a:hover,
+[cam-widget-header] .app-menu > ul > li > view > a:focus {
+  background-color: transparent;
+}
+[cam-widget-header] .app-menu > ul > li > view > a:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .app-menu > ul > li > view > a {
+    height: auto;
+    line-height: 1.6;
+  }
+}
+[cam-widget-header] .app-menu > ul > li > view > a:hover,
+[cam-widget-header] .app-menu > ul > li > view > a:focus {
+  background-color: transparent;
+}
+[cam-widget-header] .app-menu > ul > li > view > a:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+[cam-widget-header] .app-menu > ul > li.active > view > a {
+  color: #000;
+}
+[cam-widget-header] .app-menu > ul > li {
+  display: inline-block;
+  list-style: none;
+  background-color: transparent;
+}
+[cam-widget-header] .app-menu > ul > li:empty {
+  display: none;
+}
+[cam-widget-header] .app-menu > ul > li > a {
+  display: block;
+  height: 42px;
+  line-height: 45px;
+  padding: 0 6px;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .app-menu > ul > li > a {
+    height: auto;
+    line-height: 1.6;
+  }
+}
+[cam-widget-header] .app-menu > ul > li > a:hover,
+[cam-widget-header] .app-menu > ul > li > a:focus {
+  background-color: transparent;
+}
+[cam-widget-header] .app-menu > ul > li > a:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .app-menu > ul > li > a {
+    height: auto;
+    line-height: 1.6;
+  }
+}
+[cam-widget-header] .app-menu > ul > li > a:hover,
+[cam-widget-header] .app-menu > ul > li > a:focus {
+  background-color: transparent;
+}
+[cam-widget-header] .app-menu > ul > li > a:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+[cam-widget-header] .app-menu > ul > li:hover,
+[cam-widget-header] .app-menu > ul > li:focus {
+  background-color: transparent;
+}
+[cam-widget-header] .app-menu > ul > li:hover > a,
+[cam-widget-header] .app-menu > ul > li:focus > a {
+  background-color: transparent;
+}
+[cam-widget-header] .app-menu > ul > li.active {
+  background-color: #eeeeee;
+}
+[cam-widget-header] .app-menu > ul > li.active > a {
+  color: #000;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .app-menu > ul > li {
+    padding: 0 10.5px;
+  }
+}
+[cam-widget-header] .app-menu > ul.collapse {
+  visibility: visible;
+  display: block;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .app-menu > ul.collapse {
+    visibility: hidden;
+    display: none;
+  }
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .app-menu > ul {
+    text-align: right;
+    margin-left: 0;
+    width: auto;
+    border: none;
+  }
+}
+[cam-widget-header] .app-menu > ul > li {
+  display: inline-block;
+  list-style: none;
+  background-color: transparent;
+}
+[cam-widget-header] .app-menu > ul > li:empty {
+  display: none;
+}
+[cam-widget-header] .app-menu > ul > li > a {
+  display: block;
+  height: 42px;
+  line-height: 45px;
+  padding: 0 6px;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .app-menu > ul > li > a {
+    height: auto;
+    line-height: 1.6;
+  }
+}
+[cam-widget-header] .app-menu > ul > li > a:hover,
+[cam-widget-header] .app-menu > ul > li > a:focus {
+  background-color: transparent;
+}
+[cam-widget-header] .app-menu > ul > li > a:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .app-menu > ul > li > a {
+    height: auto;
+    line-height: 1.6;
+  }
+}
+[cam-widget-header] .app-menu > ul > li > a:hover,
+[cam-widget-header] .app-menu > ul > li > a:focus {
+  background-color: transparent;
+}
+[cam-widget-header] .app-menu > ul > li > a:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+[cam-widget-header] .app-menu > ul > li:hover,
+[cam-widget-header] .app-menu > ul > li:focus {
+  background-color: transparent;
+}
+[cam-widget-header] .app-menu > ul > li:hover > a,
+[cam-widget-header] .app-menu > ul > li:focus > a {
+  background-color: transparent;
+}
+[cam-widget-header] .app-menu > ul > li.active {
+  background-color: #eeeeee;
+}
+[cam-widget-header] .app-menu > ul > li.active > a {
+  color: #000;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .app-menu > ul > li {
+    padding: 0 10.5px;
+  }
+}
+[cam-widget-header] .app-menu > ul.collapse {
+  visibility: visible;
+  display: block;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .app-menu > ul.collapse {
+    visibility: hidden;
+    display: none;
+  }
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .app-menu > ul {
+    text-align: right;
+    margin-left: 0;
+    width: auto;
+    border: none;
+  }
+}
+[cam-widget-header] .app-menu > ul > li > view > a {
+  display: block;
+  height: 42px;
+  line-height: 45px;
+  padding: 0 6px;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .app-menu > ul > li > view > a {
+    height: auto;
+    line-height: 1.6;
+  }
+}
+[cam-widget-header] .app-menu > ul > li > view > a:hover,
+[cam-widget-header] .app-menu > ul > li > view > a:focus {
+  background-color: transparent;
+}
+[cam-widget-header] .app-menu > ul > li > view > a:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .app-menu > ul > li > view > a {
+    height: auto;
+    line-height: 1.6;
+  }
+}
+[cam-widget-header] .app-menu > ul > li > view > a:hover,
+[cam-widget-header] .app-menu > ul > li > view > a:focus {
+  background-color: transparent;
+}
+[cam-widget-header] .app-menu > ul > li > view > a:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+[cam-widget-header] .app-menu > ul > li.active > view > a {
+  color: #000;
+}
+[cam-widget-header] ul {
+  margin: 0;
+  padding: 0;
+}
+[cam-widget-header] ul.dropdown-menu {
+  border-top: none;
+  box-shadow: 0 2px 10px -4px #555555;
+}
+[cam-widget-header] ul.dropdown-menu::before {
+  content: '';
+  width: 100%;
+  height: 4px;
+  margin-top: -2px;
+  display: block;
+  background-color: inherit;
+}
+[cam-widget-header] ul {
+  margin: 0;
+  padding: 0;
+}
+[cam-widget-header] ul.dropdown-menu {
+  border-top: none;
+  box-shadow: 0 2px 10px -4px #555555;
+}
+[cam-widget-header] ul.dropdown-menu::before {
+  content: '';
+  width: 100%;
+  height: 4px;
+  margin-top: -2px;
+  display: block;
+  background-color: inherit;
+}
+[cam-widget-header] a {
+  color: #545454;
+  text-decoration: none;
+}
+[cam-widget-header] a:hover,
+[cam-widget-header] a:focus {
+  color: #222222;
+  text-decoration: none;
+}
+[cam-widget-header] a:hover,
+[cam-widget-header] a:focus {
+  color: #222222;
+  text-decoration: none;
+}
+[cam-widget-header] .navbar-brand {
+  font-size: 42px / 2;
+  line-height: 42px;
+  height: 42px;
+  padding-top: 0;
+  padding-bottom: 0;
+  padding-left: 42px / 4;
+  padding-right: 30px / 2;
+  color: #000;
+}
+[cam-widget-header] .navbar-brand .brand-logo {
+  font-size: 21px;
+}
+[cam-widget-header] .navbar-brand .brand-logo {
+  font-size: 21px;
+}
+[cam-widget-header] .container .navbar-brand {
+  padding-left: 0;
+}
+[cam-widget-header] .navbar-toggle {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  margin-top: 0;
+  margin-bottom: 0;
+  padding: 1px 6px;
+  height: 42px;
+}
+[cam-widget-header] .navbar-toggle > span {
+  height: 2px;
+  display: block;
+  width: 100%;
+  min-width: 16px;
+  margin: 3px 0;
+  background-color: #545454;
+  transition: transform 0.218s ease, opacity 0.218s ease;
+}
+[cam-widget-header] .navbar-toggle > span:first-of-type {
+  margin-top: 0;
+}
+[cam-widget-header] .navbar-toggle > span:last-of-type {
+  margin-bottom: 0;
+}
+[cam-widget-header] .navbar-toggle:hover > span {
+  background-color: #222222;
+}
+[cam-widget-header] .navbar-toggle:hover > span:first-of-type {
+  transform: translateY(-2px);
+}
+[cam-widget-header] .navbar-toggle:hover > span:last-of-type {
+  transform: translateY(2px);
+}
+[cam-widget-header] .navbar-toggle > span {
+  height: 2px;
+  display: block;
+  width: 100%;
+  min-width: 16px;
+  margin: 3px 0;
+  background-color: #545454;
+  transition: transform 0.218s ease, opacity 0.218s ease;
+}
+[cam-widget-header] .navbar-toggle > span:first-of-type {
+  margin-top: 0;
+}
+[cam-widget-header] .navbar-toggle > span:last-of-type {
+  margin-bottom: 0;
+}
+[cam-widget-header] .navbar-toggle:hover > span {
+  background-color: #222222;
+}
+[cam-widget-header] .navbar-toggle:hover > span:first-of-type {
+  transform: translateY(-2px);
+}
+[cam-widget-header] .navbar-toggle:hover > span:last-of-type {
+  transform: translateY(2px);
+}
+[cam-widget-header] .navbar-toggle.open > span {
+  opacity: 0;
+}
+[cam-widget-header] .navbar-toggle.open > span:first-of-type {
+  opacity: 1;
+  transform: translateY(5px) rotateZ(45deg);
+}
+[cam-widget-header] .navbar-toggle.open > span:last-of-type {
+  opacity: 1;
+  transform: translateY(-5px) rotateZ(-45deg);
+}
+[cam-widget-header] .navbar-toggle.open > span {
+  opacity: 0;
+}
+[cam-widget-header] .navbar-toggle.open > span:first-of-type {
+  opacity: 1;
+  transform: translateY(5px) rotateZ(45deg);
+}
+[cam-widget-header] .navbar-toggle.open > span:last-of-type {
+  opacity: 1;
+  transform: translateY(-5px) rotateZ(-45deg);
+}
+[cam-widget-header] .navbar-toggle > span {
+  height: 2px;
+  display: block;
+  width: 100%;
+  min-width: 16px;
+  margin: 3px 0;
+  background-color: #545454;
+  transition: transform 0.218s ease, opacity 0.218s ease;
+}
+[cam-widget-header] .navbar-toggle > span:first-of-type {
+  margin-top: 0;
+}
+[cam-widget-header] .navbar-toggle > span:last-of-type {
+  margin-bottom: 0;
+}
+[cam-widget-header] .navbar-toggle:hover > span {
+  background-color: #222222;
+}
+[cam-widget-header] .navbar-toggle:hover > span:first-of-type {
+  transform: translateY(-2px);
+}
+[cam-widget-header] .navbar-toggle:hover > span:last-of-type {
+  transform: translateY(2px);
+}
+[cam-widget-header] .navbar-toggle > span {
+  height: 2px;
+  display: block;
+  width: 100%;
+  min-width: 16px;
+  margin: 3px 0;
+  background-color: #545454;
+  transition: transform 0.218s ease, opacity 0.218s ease;
+}
+[cam-widget-header] .navbar-toggle > span:first-of-type {
+  margin-top: 0;
+}
+[cam-widget-header] .navbar-toggle > span:last-of-type {
+  margin-bottom: 0;
+}
+[cam-widget-header] .navbar-toggle:hover > span {
+  background-color: #222222;
+}
+[cam-widget-header] .navbar-toggle:hover > span:first-of-type {
+  transform: translateY(-2px);
+}
+[cam-widget-header] .navbar-toggle:hover > span:last-of-type {
+  transform: translateY(2px);
+}
+[cam-widget-header] .navbar-toggle.open > span {
+  opacity: 0;
+}
+[cam-widget-header] .navbar-toggle.open > span:first-of-type {
+  opacity: 1;
+  transform: translateY(5px) rotateZ(45deg);
+}
+[cam-widget-header] .navbar-toggle.open > span:last-of-type {
+  opacity: 1;
+  transform: translateY(-5px) rotateZ(-45deg);
+}
+[cam-widget-header] .navbar-toggle.open > span {
+  opacity: 0;
+}
+[cam-widget-header] .navbar-toggle.open > span:first-of-type {
+  opacity: 1;
+  transform: translateY(5px) rotateZ(45deg);
+}
+[cam-widget-header] .navbar-toggle.open > span:last-of-type {
+  opacity: 1;
+  transform: translateY(-5px) rotateZ(-45deg);
+}
+[cam-widget-header] .sections-menu > ul {
+  float: left;
+}
+[cam-widget-header] .sections-menu > ul > li {
+  display: inline-block;
+  list-style: none;
+  background-color: transparent;
+}
+[cam-widget-header] .sections-menu > ul > li:empty {
+  display: none;
+}
+[cam-widget-header] .sections-menu > ul > li > a {
+  display: block;
+  height: 42px;
+  line-height: 45px;
+  padding: 0 6px;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .sections-menu > ul > li > a {
+    height: auto;
+    line-height: 1.6;
+  }
+}
+[cam-widget-header] .sections-menu > ul > li > a:hover,
+[cam-widget-header] .sections-menu > ul > li > a:focus {
+  background-color: transparent;
+}
+[cam-widget-header] .sections-menu > ul > li > a:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .sections-menu > ul > li > a {
+    height: auto;
+    line-height: 1.6;
+  }
+}
+[cam-widget-header] .sections-menu > ul > li > a:hover,
+[cam-widget-header] .sections-menu > ul > li > a:focus {
+  background-color: transparent;
+}
+[cam-widget-header] .sections-menu > ul > li > a:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+[cam-widget-header] .sections-menu > ul > li:hover,
+[cam-widget-header] .sections-menu > ul > li:focus {
+  background-color: transparent;
+}
+[cam-widget-header] .sections-menu > ul > li:hover > a,
+[cam-widget-header] .sections-menu > ul > li:focus > a {
+  background-color: transparent;
+}
+[cam-widget-header] .sections-menu > ul > li.active {
+  background-color: #eeeeee;
+}
+[cam-widget-header] .sections-menu > ul > li.active > a {
+  color: #000;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .sections-menu > ul > li {
+    padding: 0 10.5px;
+  }
+}
+[cam-widget-header] .sections-menu > ul.collapse {
+  visibility: visible;
+  display: block;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .sections-menu > ul.collapse {
+    visibility: hidden;
+    display: none;
+  }
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .sections-menu > ul {
+    text-align: right;
+    margin-left: 0;
+    width: auto;
+    border: none;
+  }
+}
+[cam-widget-header] .sections-menu > ul > li {
+  display: inline-block;
+  list-style: none;
+  background-color: transparent;
+}
+[cam-widget-header] .sections-menu > ul > li:empty {
+  display: none;
+}
+[cam-widget-header] .sections-menu > ul > li > a {
+  display: block;
+  height: 42px;
+  line-height: 45px;
+  padding: 0 6px;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .sections-menu > ul > li > a {
+    height: auto;
+    line-height: 1.6;
+  }
+}
+[cam-widget-header] .sections-menu > ul > li > a:hover,
+[cam-widget-header] .sections-menu > ul > li > a:focus {
+  background-color: transparent;
+}
+[cam-widget-header] .sections-menu > ul > li > a:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .sections-menu > ul > li > a {
+    height: auto;
+    line-height: 1.6;
+  }
+}
+[cam-widget-header] .sections-menu > ul > li > a:hover,
+[cam-widget-header] .sections-menu > ul > li > a:focus {
+  background-color: transparent;
+}
+[cam-widget-header] .sections-menu > ul > li > a:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+[cam-widget-header] .sections-menu > ul > li:hover,
+[cam-widget-header] .sections-menu > ul > li:focus {
+  background-color: transparent;
+}
+[cam-widget-header] .sections-menu > ul > li:hover > a,
+[cam-widget-header] .sections-menu > ul > li:focus > a {
+  background-color: transparent;
+}
+[cam-widget-header] .sections-menu > ul > li.active {
+  background-color: #eeeeee;
+}
+[cam-widget-header] .sections-menu > ul > li.active > a {
+  color: #000;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .sections-menu > ul > li {
+    padding: 0 10.5px;
+  }
+}
+[cam-widget-header] .sections-menu > ul.collapse {
+  visibility: visible;
+  display: block;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .sections-menu > ul.collapse {
+    visibility: hidden;
+    display: none;
+  }
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .sections-menu > ul {
+    text-align: right;
+    margin-left: 0;
+    width: auto;
+    border: none;
+  }
+}
+[cam-widget-header] .app-menu > ul {
+  float: left;
+  float: right;
+}
+[cam-widget-header] .app-menu > ul > li {
+  display: inline-block;
+  list-style: none;
+  background-color: transparent;
+}
+[cam-widget-header] .app-menu > ul > li:empty {
+  display: none;
+}
+[cam-widget-header] .app-menu > ul > li > a {
+  display: block;
+  height: 42px;
+  line-height: 45px;
+  padding: 0 6px;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .app-menu > ul > li > a {
+    height: auto;
+    line-height: 1.6;
+  }
+}
+[cam-widget-header] .app-menu > ul > li > a:hover,
+[cam-widget-header] .app-menu > ul > li > a:focus {
+  background-color: transparent;
+}
+[cam-widget-header] .app-menu > ul > li > a:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .app-menu > ul > li > a {
+    height: auto;
+    line-height: 1.6;
+  }
+}
+[cam-widget-header] .app-menu > ul > li > a:hover,
+[cam-widget-header] .app-menu > ul > li > a:focus {
+  background-color: transparent;
+}
+[cam-widget-header] .app-menu > ul > li > a:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+[cam-widget-header] .app-menu > ul > li:hover,
+[cam-widget-header] .app-menu > ul > li:focus {
+  background-color: transparent;
+}
+[cam-widget-header] .app-menu > ul > li:hover > a,
+[cam-widget-header] .app-menu > ul > li:focus > a {
+  background-color: transparent;
+}
+[cam-widget-header] .app-menu > ul > li.active {
+  background-color: #eeeeee;
+}
+[cam-widget-header] .app-menu > ul > li.active > a {
+  color: #000;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .app-menu > ul > li {
+    padding: 0 10.5px;
+  }
+}
+[cam-widget-header] .app-menu > ul.collapse {
+  visibility: visible;
+  display: block;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .app-menu > ul.collapse {
+    visibility: hidden;
+    display: none;
+  }
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .app-menu > ul {
+    text-align: right;
+    margin-left: 0;
+    width: auto;
+    border: none;
+  }
+}
+[cam-widget-header] .app-menu > ul > li {
+  display: inline-block;
+  list-style: none;
+  background-color: transparent;
+}
+[cam-widget-header] .app-menu > ul > li:empty {
+  display: none;
+}
+[cam-widget-header] .app-menu > ul > li > a {
+  display: block;
+  height: 42px;
+  line-height: 45px;
+  padding: 0 6px;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .app-menu > ul > li > a {
+    height: auto;
+    line-height: 1.6;
+  }
+}
+[cam-widget-header] .app-menu > ul > li > a:hover,
+[cam-widget-header] .app-menu > ul > li > a:focus {
+  background-color: transparent;
+}
+[cam-widget-header] .app-menu > ul > li > a:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .app-menu > ul > li > a {
+    height: auto;
+    line-height: 1.6;
+  }
+}
+[cam-widget-header] .app-menu > ul > li > a:hover,
+[cam-widget-header] .app-menu > ul > li > a:focus {
+  background-color: transparent;
+}
+[cam-widget-header] .app-menu > ul > li > a:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+[cam-widget-header] .app-menu > ul > li:hover,
+[cam-widget-header] .app-menu > ul > li:focus {
+  background-color: transparent;
+}
+[cam-widget-header] .app-menu > ul > li:hover > a,
+[cam-widget-header] .app-menu > ul > li:focus > a {
+  background-color: transparent;
+}
+[cam-widget-header] .app-menu > ul > li.active {
+  background-color: #eeeeee;
+}
+[cam-widget-header] .app-menu > ul > li.active > a {
+  color: #000;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .app-menu > ul > li {
+    padding: 0 10.5px;
+  }
+}
+[cam-widget-header] .app-menu > ul.collapse {
+  visibility: visible;
+  display: block;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .app-menu > ul.collapse {
+    visibility: hidden;
+    display: none;
+  }
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .app-menu > ul {
+    text-align: right;
+    margin-left: 0;
+    width: auto;
+    border: none;
+  }
+}
+[cam-widget-header] .app-menu > ul > li > view > a {
+  display: block;
+  height: 42px;
+  line-height: 45px;
+  padding: 0 6px;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .app-menu > ul > li > view > a {
+    height: auto;
+    line-height: 1.6;
+  }
+}
+[cam-widget-header] .app-menu > ul > li > view > a:hover,
+[cam-widget-header] .app-menu > ul > li > view > a:focus {
+  background-color: transparent;
+}
+[cam-widget-header] .app-menu > ul > li > view > a:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .app-menu > ul > li > view > a {
+    height: auto;
+    line-height: 1.6;
+  }
+}
+[cam-widget-header] .app-menu > ul > li > view > a:hover,
+[cam-widget-header] .app-menu > ul > li > view > a:focus {
+  background-color: transparent;
+}
+[cam-widget-header] .app-menu > ul > li > view > a:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+[cam-widget-header] .app-menu > ul > li.active > view > a {
+  color: #000;
+}
+[cam-widget-header] .app-menu > ul > li {
+  display: inline-block;
+  list-style: none;
+  background-color: transparent;
+}
+[cam-widget-header] .app-menu > ul > li:empty {
+  display: none;
+}
+[cam-widget-header] .app-menu > ul > li > a {
+  display: block;
+  height: 42px;
+  line-height: 45px;
+  padding: 0 6px;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .app-menu > ul > li > a {
+    height: auto;
+    line-height: 1.6;
+  }
+}
+[cam-widget-header] .app-menu > ul > li > a:hover,
+[cam-widget-header] .app-menu > ul > li > a:focus {
+  background-color: transparent;
+}
+[cam-widget-header] .app-menu > ul > li > a:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .app-menu > ul > li > a {
+    height: auto;
+    line-height: 1.6;
+  }
+}
+[cam-widget-header] .app-menu > ul > li > a:hover,
+[cam-widget-header] .app-menu > ul > li > a:focus {
+  background-color: transparent;
+}
+[cam-widget-header] .app-menu > ul > li > a:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+[cam-widget-header] .app-menu > ul > li:hover,
+[cam-widget-header] .app-menu > ul > li:focus {
+  background-color: transparent;
+}
+[cam-widget-header] .app-menu > ul > li:hover > a,
+[cam-widget-header] .app-menu > ul > li:focus > a {
+  background-color: transparent;
+}
+[cam-widget-header] .app-menu > ul > li.active {
+  background-color: #eeeeee;
+}
+[cam-widget-header] .app-menu > ul > li.active > a {
+  color: #000;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .app-menu > ul > li {
+    padding: 0 10.5px;
+  }
+}
+[cam-widget-header] .app-menu > ul.collapse {
+  visibility: visible;
+  display: block;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .app-menu > ul.collapse {
+    visibility: hidden;
+    display: none;
+  }
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .app-menu > ul {
+    text-align: right;
+    margin-left: 0;
+    width: auto;
+    border: none;
+  }
+}
+[cam-widget-header] .app-menu > ul > li {
+  display: inline-block;
+  list-style: none;
+  background-color: transparent;
+}
+[cam-widget-header] .app-menu > ul > li:empty {
+  display: none;
+}
+[cam-widget-header] .app-menu > ul > li > a {
+  display: block;
+  height: 42px;
+  line-height: 45px;
+  padding: 0 6px;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .app-menu > ul > li > a {
+    height: auto;
+    line-height: 1.6;
+  }
+}
+[cam-widget-header] .app-menu > ul > li > a:hover,
+[cam-widget-header] .app-menu > ul > li > a:focus {
+  background-color: transparent;
+}
+[cam-widget-header] .app-menu > ul > li > a:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .app-menu > ul > li > a {
+    height: auto;
+    line-height: 1.6;
+  }
+}
+[cam-widget-header] .app-menu > ul > li > a:hover,
+[cam-widget-header] .app-menu > ul > li > a:focus {
+  background-color: transparent;
+}
+[cam-widget-header] .app-menu > ul > li > a:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+[cam-widget-header] .app-menu > ul > li:hover,
+[cam-widget-header] .app-menu > ul > li:focus {
+  background-color: transparent;
+}
+[cam-widget-header] .app-menu > ul > li:hover > a,
+[cam-widget-header] .app-menu > ul > li:focus > a {
+  background-color: transparent;
+}
+[cam-widget-header] .app-menu > ul > li.active {
+  background-color: #eeeeee;
+}
+[cam-widget-header] .app-menu > ul > li.active > a {
+  color: #000;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .app-menu > ul > li {
+    padding: 0 10.5px;
+  }
+}
+[cam-widget-header] .app-menu > ul.collapse {
+  visibility: visible;
+  display: block;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .app-menu > ul.collapse {
+    visibility: hidden;
+    display: none;
+  }
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .app-menu > ul {
+    text-align: right;
+    margin-left: 0;
+    width: auto;
+    border: none;
+  }
+}
+[cam-widget-header] .app-menu > ul > li > view > a {
+  display: block;
+  height: 42px;
+  line-height: 45px;
+  padding: 0 6px;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] .app-menu > ul > li > view > a {
+    height: auto;
+    line-height: 1.6;
+  }
+}
+[cam-widget-header] .app-menu > ul > li > view > a:hover,
+[cam-widget-header] .app-menu > ul > li > view > a:focus {
+  background-color: transparent;
+}
+[cam-widget-header] .app-menu > ul > li > view > a:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
 }
 @media screen and (max-width: 842px) {
   [cam-widget-header] .app-menu > ul > li > view > a {
@@ -8334,6 +9657,21 @@ body {
   outline: 5px auto -webkit-focus-ring-color;
   outline-offset: -2px;
 }
+@media screen and (max-width: 842px) {
+  [cam-widget-header] [ng-transclude] :not(.dropdown-menu) > li > view a {
+    height: auto;
+    line-height: 1.6;
+  }
+}
+[cam-widget-header] [ng-transclude] :not(.dropdown-menu) > li > view a:hover,
+[cam-widget-header] [ng-transclude] :not(.dropdown-menu) > li > view a:focus {
+  background-color: transparent;
+}
+[cam-widget-header] [ng-transclude] :not(.dropdown-menu) > li > view a:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
 [cam-widget-header] [ng-transclude] :not(.dropdown-menu) > li > button {
   display: block;
   height: 42px;
@@ -8342,6 +9680,55 @@ body {
   background-color: transparent;
   border: none;
   color: #545454;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] [ng-transclude] :not(.dropdown-menu) > li > button {
+    height: auto;
+    line-height: 1.6;
+  }
+}
+[cam-widget-header] [ng-transclude] :not(.dropdown-menu) > li > button:hover,
+[cam-widget-header] [ng-transclude] :not(.dropdown-menu) > li > button:focus {
+  background-color: transparent;
+}
+[cam-widget-header] [ng-transclude] :not(.dropdown-menu) > li > button:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] [ng-transclude] :not(.dropdown-menu) > li > button {
+    height: auto;
+    line-height: 1.6;
+  }
+}
+[cam-widget-header] [ng-transclude] :not(.dropdown-menu) > li > button:hover,
+[cam-widget-header] [ng-transclude] :not(.dropdown-menu) > li > button:focus {
+  background-color: transparent;
+}
+[cam-widget-header] [ng-transclude] :not(.dropdown-menu) > li > button:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
+}
+[cam-widget-header] [ng-transclude] :not(.dropdown-menu) > li > button:hover,
+[cam-widget-header] [ng-transclude] :not(.dropdown-menu) > li > button:focus {
+  color: #222222;
+}
+@media screen and (max-width: 842px) {
+  [cam-widget-header] [ng-transclude] :not(.dropdown-menu) > li > button {
+    height: auto;
+    line-height: 1.6;
+  }
+}
+[cam-widget-header] [ng-transclude] :not(.dropdown-menu) > li > button:hover,
+[cam-widget-header] [ng-transclude] :not(.dropdown-menu) > li > button:focus {
+  background-color: transparent;
+}
+[cam-widget-header] [ng-transclude] :not(.dropdown-menu) > li > button:focus {
+  outline: thin dotted;
+  outline: 5px auto -webkit-focus-ring-color;
+  outline-offset: -2px;
 }
 @media screen and (max-width: 842px) {
   [cam-widget-header] [ng-transclude] :not(.dropdown-menu) > li > button {
