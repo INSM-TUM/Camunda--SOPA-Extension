@@ -19,5 +19,5 @@ app.post("/performCalc", async (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`);
+    console.log(`Event log extractor listening on port ${port}`);
 });
