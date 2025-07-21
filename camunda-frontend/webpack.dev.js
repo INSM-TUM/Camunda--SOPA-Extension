@@ -32,13 +32,13 @@ module.exports = (_env, argv = {}) => {
   const addEngines = engines => {
     return engines.reduce((acc, engine) => {
       acc[`/camunda/app/*/${engine}/`] = {
-        target: 'http://localhost:8082/',
+        target: 'http://localhost:8081/',
         pathRewrite: path => {
           return path.replace(`/${engine}`, '').replace('/camunda', '');
         }
       };
       acc[`/camunda/app/*/${engine}/setup/`] = {
-        target: 'http://localhost:8082/',
+        target: 'http://localhost:8081/',
         pathRewrite: path => {
           return path
             .replace(`/${engine}`, '')
@@ -55,11 +55,11 @@ module.exports = (_env, argv = {}) => {
       publicPath: '/'
     },
     entry: {
-      client: 'webpack-dev-server/client?http://localhost:8082?live-reload=true'
+      client: 'webpack-dev-server/client?http://localhost:8081?live-reload=true'
     },
     devtool: 'source-map',
     devServer: {
-      port: 8082,
+      port: 8081,
       static: {
         directory: path.resolve(__dirname, './public'),
         publicPath: '/app'
@@ -67,26 +67,26 @@ module.exports = (_env, argv = {}) => {
       https: false,
       proxy: {
         '/api': {
-          target: 'http://localhost:8082/camunda/api',
+          target: 'http://localhost:8080/camunda/api',
           logLevel: 'debug',
           pathRewrite: {
             '^/api': ''
           }
         },
         '/camunda-welcome': {
-          target: 'http://localhost:8082/',
+          target: 'http://localhost:8080/',
           logLevel: 'debug'
         },
         ...addEngines(['default', 'engine2', 'engine3']),
         '/camunda/*': {
-          target: 'http://localhost:8082/',
+          target: 'http://localhost:8081/',
           logLevel: 'debug',
           pathRewrite: path => {
             return path.replace('/camunda', '');
           }
         },
         '/camunda/api/*': {
-          target: 'http://localhost:8082/',
+          target: 'http://localhost:8081/',
           logLevel: 'debug',
           pathRewrite: path => {
             return path.replace('/camunda', '');
