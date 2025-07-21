@@ -1,2 +1,4 @@
 /camunda-h2-dbs
 /node_modules
+tomcat-server/server/apache-tomcat-10.1.30/bin/NULL
+tomcat-server/server/apache-tomcat-10.1.30/bin/camunda-h2-dbs/process-engine.mv.db
