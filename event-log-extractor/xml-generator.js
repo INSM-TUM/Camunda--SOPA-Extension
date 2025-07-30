@@ -183,5 +183,5 @@ function generateCostDrivers(activity) {
 }
 
 function generateCostDriver(parameter) {
-    return `<string key="cost:driver" value="${parameter.abstractCostDriver}(${parameter.concreteCostDriver}): ${parameter.costs}"/>`;
+    return `<string key="cost:driver" value="${parameter.abstractCostDriver}--${parameter.concreteCostDriver} (${parameter.targetAmount} ${parameter.unit}): ${parameter.costs}"/>`;
 }
